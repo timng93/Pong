@@ -31,8 +31,8 @@ export default class Game {
       this.paddleHeight,
       this.width- this.boardGap - this.paddleWidth,
       (this.height - this.paddleHeight) / 2,
-      KEYS.a,
-      KEYS.z
+      KEYS.up,
+      KEYS.down
     );
 
     console.log(this.player1);
