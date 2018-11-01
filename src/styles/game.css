@@ -84,3 +84,66 @@ h1 {
   margin-bottom: 1rem; 
   text-align: center;
 }
+
+.table{
+    animation-name: colorful;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+   
+  }
+  
+  @keyframes colorful {
+    0% {
+      opacity: 0.1;
+      
+      fill: crimson;
+    }
+    25%{
+      fill: orange;
+    }
+    50%{
+      fill: green;
+    }
+    75%{
+      opacity: 0.75;
+      fill: white;
+      
+    }
+    100% {
+      fill: yellow;
+    }
+  
+
+}
+
+#circle {
+  animation-name: colorful;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+ 
+}
+
+@keyframes colorful {
+  0% {
+    opacity: 0.1;
+    cy: 80;
+    cx: 210;
+    fill: crimson;
+  }
+  25%{
+    fill: orange;
+  }
+  50%{
+    fill: green;
+  }
+  75%{
+    opacity: 0.75;
+    fill: white;
+    cy: 160; cx: 180;
+  }
+  100% {
+    fill: yellow;
+  }
+}
