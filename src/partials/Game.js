@@ -1,5 +1,6 @@
 import Board from "./Board";
 import Paddle from "./Paddle";
+import Ball from "./Ball";
 import { SVG_NS, KEYS } from "../settings";
 
 export default class Game {
@@ -35,6 +36,14 @@ export default class Game {
       KEYS.down
     );
 
+    this.radius = 8;
+    this.boardWidth = 512;
+    this.boardHeight = 256;
+    
+    this.ball = new Ball(
+      this.radius,this.boardWidth,this.boardHeight);
+    
+
     console.log(this.player1);
   } //end of constructor
 
@@ -50,5 +59,6 @@ export default class Game {
     this.board.render(svg);
     this.player1.render(svg);
     this.player2.render(svg);
+    this.ball.render(svg);
   }
 }

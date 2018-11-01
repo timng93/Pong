@@ -17,6 +17,7 @@ export default class Paddle {
           console.log("up");
           break;
         case down:
+          
           this.down();
           console.log("down");
           break;
@@ -25,13 +26,12 @@ export default class Paddle {
   }
   //...
   up() {
-    console.log("up");
-    this.y = this.y - this.speed;
+    this.y= Math.max(this.y - this.speed,0)
+   
   }
 
   down() {
-    console.log("down");
-    this.y = this.y + this.speed;
+    this.y= Math.min(this.y + this.speed, 256- this.height)
   }
 
   render(svg) {
