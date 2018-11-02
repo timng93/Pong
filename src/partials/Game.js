@@ -42,6 +42,7 @@ export default class Game {
     
     this.ball = new Ball(
       this.radius,this.boardWidth,this.boardHeight);
+      
     
 
     console.log(this.player1);
@@ -60,5 +61,6 @@ export default class Game {
     this.player1.render(svg);
     this.player2.render(svg);
     this.ball.render(svg);
+    
   }
 }
