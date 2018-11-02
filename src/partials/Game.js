@@ -5,7 +5,7 @@ import Score from "./Score";
 import { SVG_NS, KEYS } from "../settings";
 
 export default class Game {
-  constructor(element, width, height) {
+  constructor(element, width, height, color) {
     this.element = element;
     this.width = width;
     this.height = height;
@@ -14,8 +14,10 @@ export default class Game {
     this.board = new Board(this.width, this.height);
 
     this.paddleWidth = 8;
-    this.paddleHeight = 56;
+    this.paddleHeight = 76;
     this.boardGap = 10;
+
+
 
     this.player1 = new Paddle(
       this.height,
@@ -42,8 +44,14 @@ export default class Game {
     this.radius = 8;
     this.boardWidth = 512;
     this.boardHeight = 256;
+    this.color = color;
 
-    this.ball = new Ball(this.radius, this.boardWidth, this.boardHeight);
+    this.ball = new Ball(this.radius, this.boardWidth, this.boardHeight, "darkmagenta");
+
+    this.ball2 = new Ball(this.radius*2, this.boardWidth, this.boardHeight, "darkorange");
+
+    this.ball3 = new Ball(this.radius*1.5, this.boardWidth, this.boardHeight, "mediumslateblue");
+
 
     console.log(this.player1);
 
@@ -60,13 +68,25 @@ export default class Game {
       }
     });
 
+    this.music = new Audio("public/sounds/dalab.mp3");
+
+
     
   }
   //...
   //end of constructor
 
+  
+ /*let winner (score){
+    if (player1.score == 10 || player2.score == 10) {
+  alert("You are the winner");
+  document.location.reload();
+    }else 
+  };*/
+
   render() {
     if (this.pause) {
+      this.music.play();
       return;
     }
     this.gameElement.innerHTML = "";
@@ -80,6 +100,8 @@ export default class Game {
     this.player1.render(svg);
     this.player2.render(svg);
     this.ball.render(svg, this.player1, this.player2);
+    this.ball2.render(svg,this.player1, this.player2);
+    this.ball3.render(svg,this.player1, this.player2);
     this.score1.render(svg,this.player1.score);
     this.score2.render(svg, this.player2.score);
   }

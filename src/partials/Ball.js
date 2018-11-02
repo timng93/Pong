@@ -1,14 +1,15 @@
 import { SVG_NS } from "../settings";
 
 export default class Ball {
-  constructor(radius, boardWidth, boardHeight) {
+  constructor(radius, boardWidth, boardHeight, color) {
     this.radius = radius;
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.color= color;
 
     this.reset();
-    this.ping = new Audio("public/sounds/bts.mp3");
+    this.ping = new Audio("public/sounds/pong-01.wav");
 
   }
 
@@ -75,7 +76,7 @@ export default class Ball {
       
     {
       this.vx *= -1;
-      this.ping.play();
+     this.ping.play();
 
     }
   }
@@ -124,7 +125,7 @@ export default class Ball {
     this.paddleCollision(player1, player2);
 
     let circle = document.createElementNS(SVG_NS, "circle");
-    circle.setAttributeNS(null, "fill", "gold");
+    circle.setAttributeNS(null, "fill", this.color);
     circle.setAttributeNS(null, "cx", this.x);
     circle.setAttributeNS(null, "cy", this.y);
     circle.setAttributeNS(null, "r", this.radius);

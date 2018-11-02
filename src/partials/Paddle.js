@@ -73,7 +73,7 @@ if (this.keyState[this.keyDown] && this.player === "player2") {
   this.down();
 }
     let rect = document.createElementNS(SVG_NS, "rect");
-    rect.setAttributeNS(null, "fill", "gold");
+    rect.setAttributeNS(null, "fill", "firebrick");
     rect.setAttributeNS(null, "width", this.width);
     rect.setAttributeNS(null, "height", this.height);
     rect.setAttributeNS(null, "x", this.x);

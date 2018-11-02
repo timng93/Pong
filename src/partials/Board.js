@@ -8,7 +8,7 @@ export default class Board {
 
   render(svg) {
     let rect = document.createElementNS(SVG_NS, "rect");
-    rect.setAttributeNS(null, "fill", "crimson");
+    rect.setAttributeNS(null, "fill", "palegreen");
     rect.setAttributeNS(null, "width", this.width);
     rect.setAttributeNS(null, "height", this.height);
 
