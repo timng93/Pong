@@ -30,7 +30,7 @@ export default class Game {
       this.height,
       this.paddleWidth,
       this.paddleHeight,
-      this.width- this.boardGap - this.paddleWidth,
+      this.width - this.boardGap - this.paddleWidth,
       (this.height - this.paddleHeight) / 2,
       KEYS.up,
       KEYS.down
@@ -39,17 +39,26 @@ export default class Game {
     this.radius = 8;
     this.boardWidth = 512;
     this.boardHeight = 256;
-    
-    this.ball = new Ball(
-      this.radius,this.boardWidth,this.boardHeight);
-      
-    
+
+    this.ball = new Ball(this.radius, this.boardWidth, this.boardHeight);
 
     console.log(this.player1);
-  } //end of constructor
+
+    document.addEventListener("keydown", event => {
+      switch (event.key) {
+        case KEYS.spaceBar:
+          this.pause = !this.pause;
+          break;
+      }
+    });
+  }
+  //...
+  //end of constructor
 
   render() {
-    // More code goes here...
+    if (this.pause) {
+      return;
+    }
     this.gameElement.innerHTML = "";
     let svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttributeNS(null, "width", this.width);
@@ -60,7 +69,6 @@ export default class Game {
     this.board.render(svg);
     this.player1.render(svg);
     this.player2.render(svg);
-    this.ball.render(svg);
-    
+    this.ball.render(svg,this.player1,this.player2);
   }
 }
