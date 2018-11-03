@@ -6,11 +6,12 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
-    this.color= color;
+    this.color = color;
+    this.finalScore = 7;
+    
 
     this.reset();
     this.ping = new Audio("public/sounds/pong-01.wav");
-
   }
 
   reset() {
@@ -22,7 +23,12 @@ export default class Ball {
       this.vy = Math.floor(Math.random() * 10 - 5);
     }
     this.vx = this.direction * (6 - Math.abs(this.vy));
+
+    this.ax = 0.2;
+   this.ay = 0.3;
   }
+
+   
 
   wallCollision() {
     const hitLeft = this.x - this.radius <= 0;
@@ -32,10 +38,13 @@ export default class Ball {
 
     if (hitLeft || hitRight) {
       this.vx *= -1;
+      this.ax *= -1;
     } else if (hitTop) {
       this.vy *= -1;
+      this.ay *= -1;
     } else if (hitBottom) {
       this.vy *= -1;
+      this.ay *= -1;
     }
   }
 
@@ -46,11 +55,7 @@ export default class Ball {
         player2.y,
         player2.width,
         player2.height
-      )
-
-
-
-      ;
+      );
 
       let [leftX, rightX, topY, bottomY] = paddle;
 
@@ -64,52 +69,54 @@ export default class Ball {
         //this.vx = -this.vx
       }
       //...
-      
     } else {
-      let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height);
+      let paddle = player1.coordinates(
+        player1.x,
+        player1.y,
+        player1.width,
+        player1.height
+      );
 
-      let [ leftX, rightX, topY, bottomY ]= paddle;
+      let [leftX, rightX, topY, bottomY] = paddle;
 
       if (
-         (this.x - this.radius <= rightX) && (this.x - this.radius >= leftX) && (this.y >= topY && this.y <= bottomY))
-
-      
-    {
-      this.vx *= -1;
-     this.ping.play();
-
+        this.x - this.radius <= rightX &&
+        this.x - this.radius >= leftX &&
+        (this.y >= topY && this.y <= bottomY)
+      ) {
+        this.vx *= -1;
+        this.ping.play();
+      }
     }
-  }
-    
   }
 
   goal(player) {
-
     player.score++;
 
     this.reset();
 
     console.log(player.score);
 
+    if (player.score === this.finalScore) {
+      alert("Congrats! Shall I call you Pong 先生 (Sensei)?");
 
+      document.location.reload();
+    }
+
+    
     //console.log(); player point e.g which play and using ++
-
   }
 
   render(svg, player1, player2) {
-
     const rightGoal = this.x + this.radius >= this.boardWidth;
 
     const leftGoal = this.x - this.radius <= 0;
 
-    if(rightGoal) {
-
+    if (rightGoal) {
       this.goal(player1);
 
       this.direction = 1;
-
     } else if (leftGoal) {
-
       this.goal(player2);
 
       this.direction = -1;
@@ -118,8 +125,14 @@ export default class Ball {
     //check if the ball goes off the board to the right or left
 
     //call a goal method
+
+    this.vx += this.ax;
+    this.vy += this.ay;
+    
     this.x += this.vx;
     this.y += this.vy;
+
+    
 
     this.wallCollision();
     this.paddleCollision(player1, player2);

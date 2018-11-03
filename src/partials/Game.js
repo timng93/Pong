@@ -14,7 +14,7 @@ export default class Game {
     this.board = new Board(this.width, this.height);
 
     this.paddleWidth = 8;
-    this.paddleHeight = 76;
+    this.paddleHeight = 56;
     this.boardGap = 10;
 
 
@@ -45,7 +45,7 @@ export default class Game {
     this.boardWidth = 512;
     this.boardHeight = 256;
     this.color = color;
-
+    
     this.ball = new Ball(this.radius, this.boardWidth, this.boardHeight, "darkmagenta");
 
     this.ball2 = new Ball(this.radius*2, this.boardWidth, this.boardHeight, "darkorange");
@@ -68,7 +68,7 @@ export default class Game {
       }
     });
 
-    this.music = new Audio("public/sounds/dalab.mp3");
+   
 
 
     
@@ -76,19 +76,15 @@ export default class Game {
   //...
   //end of constructor
 
-  
- /*let winner (score){
-    if (player1.score == 10 || player2.score == 10) {
-  alert("You are the winner");
-  document.location.reload();
-    }else 
-  };*/
+
+ 
 
   render() {
     if (this.pause) {
-      this.music.play();
+      
       return;
     }
+
     this.gameElement.innerHTML = "";
     let svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttributeNS(null, "width", this.width);
@@ -104,5 +100,6 @@ export default class Game {
     this.ball3.render(svg,this.player1, this.player2);
     this.score1.render(svg,this.player1.score);
     this.score2.render(svg, this.player2.score);
+
   }
 }
