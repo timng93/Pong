@@ -11,6 +11,9 @@ export default class Ball {
 
     this.reset();
     this.ping = new Audio("public/sounds/pong-01.wav");
+    this.alert = new Audio("public/sounds/pong-04.wav");
+
+
   }
 
   reset() {
@@ -96,12 +99,13 @@ export default class Ball {
     console.log(player.score);
 
     if (player.score === this.finalScore) {
+      this.alert.play();
+
       alert("Congrat to the winner-First to reach 20 goals! Shall I call you Pong 先生 (Sensei)?");
 
       document.location.reload();
     }
 
-    //console.log(); player point e.g which play and using ++
   }
 
   render(svg, player1, player2) {
@@ -119,9 +123,7 @@ export default class Ball {
       this.direction = -1;
     }
 
-    //check if the ball goes off the board to the right or left
 
-    //call a goal method
 
     this.vx += this.ax;
     this.vy += this.ay;
