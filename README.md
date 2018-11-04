@@ -17,26 +17,26 @@ A basic pong game using SVGs.
 `> npm run build`
 
 ## Keys
+
 **Start & Pause Game**
 
-* enter: start/pause
-* space bar: pause
+- enter: start/pause
+- space bar: pause
 
 **Player 1:**
-* a: up
-* z: down
+
+- a: up
+- z: down
 
 **Player 2:**
-* ▲ : up
-* ▼: down
 
-##Personal Learning
+- ▲ : up
+- ▼: down
 
-Stretch Goals attempted with Multiple Balls with different sizes, color and velocity. 
+## Personal Learning
 
-Starter and Ender implemented with Enter key to start the game, and Board declares winner for whichever player that reaches 20 goals first. 
+Stretch Goals attempted with Multiple Balls with different sizes, color and velocity.
 
-Movement of balls is implemented with simple physics regarding speed and acceleration. 
+Starter and Ender implemented with Enter key to start the game, and Board declares winner for whichever player that reaches 20 goals first.
 
-
-
+Movement of balls is implemented with simple physics regarding speed and acceleration.
