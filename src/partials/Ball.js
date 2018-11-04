@@ -7,8 +7,7 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
     this.color = color;
-    this.finalScore = 10;
-    
+    this.finalScore = 20;
 
     this.reset();
     this.ping = new Audio("public/sounds/pong-01.wav");
@@ -24,11 +23,9 @@ export default class Ball {
     }
     this.vx = this.direction * (6 - Math.abs(this.vy));
 
-    this.ax = 0.02;
-   this.ay = 0.02;
+    this.ax = Math.random() * 0.07;
+    this.ay = Math.random() * 0.07;
   }
-
-   
 
   wallCollision() {
     const hitLeft = this.x - this.radius <= 0;
@@ -99,12 +96,11 @@ export default class Ball {
     console.log(player.score);
 
     if (player.score === this.finalScore) {
-      alert("Congrats! Shall I call you Pong 先生 (Sensei)?");
+      alert("Congrat to the winner-First to reach 20 goals! Shall I call you Pong 先生 (Sensei)?");
 
       document.location.reload();
     }
 
-    
     //console.log(); player point e.g which play and using ++
   }
 
@@ -129,11 +125,9 @@ export default class Ball {
 
     this.vx += this.ax;
     this.vy += this.ay;
-    
+
     this.x += this.vx;
     this.y += this.vy;
-
-    
 
     this.wallCollision();
     this.paddleCollision(player1, player2);
