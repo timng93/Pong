@@ -7,7 +7,7 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
     this.color = color;
-    this.finalScore = 7;
+    this.finalScore = 10;
     
 
     this.reset();
@@ -24,8 +24,8 @@ export default class Ball {
     }
     this.vx = this.direction * (6 - Math.abs(this.vy));
 
-    this.ax = 0.2;
-   this.ay = 0.3;
+    this.ax = 0.02;
+   this.ay = 0.02;
   }
 
    
@@ -64,9 +64,9 @@ export default class Ball {
         this.x + this.radius <= rightX &&
         (this.y >= topY && this.y <= bottomY)
       ) {
-        this.vx *= -1;
+        this.ax *= -1;
+        this.vx *= -this.vx;
         this.ping.play();
-        //this.vx = -this.vx
       }
       //...
     } else {
@@ -84,7 +84,8 @@ export default class Ball {
         this.x - this.radius >= leftX &&
         (this.y >= topY && this.y <= bottomY)
       ) {
-        this.vx *= -1;
+        this.ax *= -1;
+        this.vx *= -this.vx;
         this.ping.play();
       }
     }
@@ -142,6 +143,7 @@ export default class Ball {
     circle.setAttributeNS(null, "cx", this.x);
     circle.setAttributeNS(null, "cy", this.y);
     circle.setAttributeNS(null, "r", this.radius);
+
     svg.appendChild(circle);
   }
 }

@@ -24,21 +24,6 @@ export default class Paddle {
       this.keyState[event.key || event.which] = false;
     }, true);
 
-
-
-   /* document.addEventListener("keydown", event => {
-      switch (event.key) {
-        case up:
-          this.up();
-          console.log("up");
-          break;
-        case down:
-          
-          this.down();
-          console.log("down");
-          break;
-      }
-    });*/
   }
   //...
   up() {
@@ -78,6 +63,7 @@ if (this.keyState[this.keyDown] && this.player === "player2") {
     rect.setAttributeNS(null, "height", this.height);
     rect.setAttributeNS(null, "x", this.x);
     rect.setAttributeNS(null, "y", this.y);
+
 
     svg.appendChild(rect);
   }

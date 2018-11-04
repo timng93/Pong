@@ -46,6 +46,7 @@ export default class Game {
     this.boardHeight = 256;
     this.color = color;
     
+    
     this.ball = new Ball(this.radius, this.boardWidth, this.boardHeight, "darkmagenta");
 
     this.ball2 = new Ball(this.radius*2, this.boardWidth, this.boardHeight, "darkorange");
@@ -68,23 +69,30 @@ export default class Game {
       }
     });
 
-   
-
-
-    
+    document.addEventListener("keydown", event => {
+      switch (event.key) {
+        case KEYS.enter:
+        this.enter = !this.enter;
+        break;
+      }
+    });
   }
   //...
   //end of constructor
 
 
- 
+  
 
   render() {
+    
     if (this.pause) {
       
       return;
     }
 
+
+    
+    if (this.enter) {
     this.gameElement.innerHTML = "";
     let svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttributeNS(null, "width", this.width);
@@ -100,6 +108,6 @@ export default class Game {
     this.ball3.render(svg,this.player1, this.player2);
     this.score1.render(svg,this.player1.score);
     this.score2.render(svg, this.player2.score);
-
+    }
   }
 }
