@@ -23,8 +23,8 @@ export default class Ball {
     }
     this.vx = this.direction * (6 - Math.abs(this.vy));
 
-    this.ax = Math.random() * 0.07;
-    this.ay = Math.random() * 0.07;
+    this.ax = Math.random()*0.07;
+    this.ay = Math.random()*0.07;
   }
 
   wallCollision() {
