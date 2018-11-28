@@ -12,8 +12,6 @@ export default class Ball {
     this.reset();
     this.ping = new Audio("public/sounds/pong-01.wav");
     this.alert = new Audio("public/sounds/pong-04.wav");
-
-
   }
 
   reset() {
@@ -26,8 +24,8 @@ export default class Ball {
     }
     this.vx = this.direction * (6 - Math.abs(this.vy));
 
-    this.ax = Math.random()*0.07;
-    this.ay = Math.random()*0.07;
+    this.ax = Math.random() * 0.001;
+    this.ay = Math.random() * 0.001;
   }
 
   wallCollision() {
@@ -65,7 +63,7 @@ export default class Ball {
         (this.y >= topY && this.y <= bottomY)
       ) {
         this.ax *= -1;
-        this.vx *= -this.vx;
+        this.vx *= -1;
         this.ping.play();
       }
       //...
@@ -85,7 +83,7 @@ export default class Ball {
         (this.y >= topY && this.y <= bottomY)
       ) {
         this.ax *= -1;
-        this.vx *= -this.vx;
+        this.vx *= -1;
         this.ping.play();
       }
     }
@@ -101,11 +99,12 @@ export default class Ball {
     if (player.score === this.finalScore) {
       this.alert.play();
 
-      alert("Congrat to the winner-First to reach 20 goals! Shall I call you Pong 先生 (Sensei)?");
+      alert(
+        "Congrat to the winner-First to reach 20 goals! Shall I call you Pong 先生 (Sensei)?"
+      );
 
       document.location.reload();
     }
-
   }
 
   render(svg, player1, player2) {
@@ -122,8 +121,6 @@ export default class Ball {
 
       this.direction = -1;
     }
-
-
 
     this.vx += this.ax;
     this.vy += this.ay;
